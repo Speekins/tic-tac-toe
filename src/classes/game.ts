@@ -1,11 +1,32 @@
 class Game {
-  winConditions: number[][]
+  winConditions: string[]
   //player: {name: string, score: string}
   players: Player[]
+  currentPlayer: Player
 
   constructor(humanName: string) {
     this.players = [new Player(humanName), new Player('Computer')]
-    this.winConditions = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
+    this.currentPlayer = this.players[this.assignRandom()],
+      this.winConditions = ['123', '456', '789', '147', '258', '369', '159', '357']
+  }
+
+  checkForWin() {
+    for (let i = 0; i < this.winConditions.length; i++) {
+      if (this.currentPlayer.score.includes(this.winConditions[i])) {
+        return this.currentPlayer.name
+      }
+    }
+    this.changeTurn()
+  }
+
+  changeTurn() {
+    this.currentPlayer === this.players[0] ? 
+    this.currentPlayer = this.players[1] : this.currentPlayer = this.players[0]
+  }
+
+  assignRandom(): number {
+    const num = Math.random()
+    return num > 0.5 ? Math.ceil(num) : Math.floor(num)
   }
 }
 
