@@ -1,9 +1,11 @@
 class Player {
   name: string
+  token: string
   score: string
-  
-  constructor(name: string) {
-    this.name = name,
+
+  constructor(token: string, humanName?: string) {
+    this.name = humanName || 'Computer',
+    this.token = token
     this.score = ''
   }
 
@@ -12,4 +14,4 @@ class Player {
   }
 }
 
-module.exports = Player
+export default Player

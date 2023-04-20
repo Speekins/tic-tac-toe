@@ -2,10 +2,15 @@
 const path = require('path')
 //import { Configuration } from "webpack"
 
+
 module.exports = {
   entry: "./src/index.ts",
   module: {
     rules: [
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
       {
         test: /\.(ts|js)?$/,
         exclude: /node_modules/,
@@ -23,7 +28,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "bundle.js",
+    filename: "bundle.js"
   },
   devServer: {
     static: path.join(__dirname, "dist"),

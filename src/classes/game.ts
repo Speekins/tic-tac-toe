@@ -1,13 +1,27 @@
+import Player from "./player"
+
 class Game {
   winConditions: string[]
   //player: {name: string, score: string}
   players: Player[]
   currentPlayer: Player
+  gameBoard: { 1: string, 2: string, 3: string, 4: string, 5: string, 6: string, 7: string, 8: string, 9: string }
 
-  constructor(humanName: string) {
-    this.players = [new Player(humanName), new Player('Computer')]
-    this.currentPlayer = this.players[this.assignRandom()],
-      this.winConditions = ['123', '456', '789', '147', '258', '369', '159', '357']
+  constructor(token: string, humanName: string) {
+    this.players = [new Player(token, humanName), new Player(token === 'X' ? 'O' : 'X', 'Computer')]
+    this.currentPlayer = this.players[this.assignRandom()]
+    this.gameBoard = {
+      1: '',
+      2: '',
+      3: '',
+      4: '',
+      5: '',
+      6: '',
+      7: '',
+      8: '',
+      9: ''
+    }
+    this.winConditions = ['123', '456', '789', '147', '258', '369', '159', '357']
   }
 
   checkForWin() {
@@ -20,8 +34,8 @@ class Game {
   }
 
   changeTurn() {
-    this.currentPlayer === this.players[0] ? 
-    this.currentPlayer = this.players[1] : this.currentPlayer = this.players[0]
+    this.currentPlayer === this.players[0] ?
+      this.currentPlayer = this.players[1] : this.currentPlayer = this.players[0]
   }
 
   assignRandom(): number {
@@ -30,4 +44,4 @@ class Game {
   }
 }
 
-module.exports = Game
+export default Game
