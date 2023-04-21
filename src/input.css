@@ -3,5 +3,9 @@
 @tailwind utilities;
 
 .hidden {
-  @apply hidden
+  display: none
+}
+
+.ttt-box {
+  @apply flex justify-center items-center border-2 border-black w-24 h-24 hover:cursor-pointer m-2
 }

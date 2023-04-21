@@ -38,6 +38,10 @@ class Game {
       this.currentPlayer = this.players[1] : this.currentPlayer = this.players[0]
   }
 
+  addScore(box: number) {
+    this.currentPlayer.score += String(box)
+  }
+
   assignRandom(): number {
     const num = Math.random()
     return num > 0.5 ? Math.ceil(num) : Math.floor(num)

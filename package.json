@@ -6,7 +6,7 @@
     "build": "webpack --mode production",
     "babel": "babel src/index.ts --out-file dist/bundle.js",
     "eslint": "eslint src/index.ts",
-    "build:tailwind": "tailwindcss -i ./src/input.css -o public/output.css"
+    "tailwind": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch"
   },
   "devDependencies": {
     "@babel/cli": "^7.21.0",

@@ -14,19 +14,31 @@
   <link rel="stylesheet" href="output.css">
 </head>
 
-<body class="font-OpenSans bg-custom-blue flex min-w-full min-h-full items-center justify-center">
-  <div id="start-form" class="flex-col min-w-full min-h-full items-center justify-center">
-    <form class="w-full">
-      <label for="username">What's Your Name?</label>
+<body
+  class="font-OpenSans bg-custom-blue flex min-w-full min-h-full items-center justify-center">
+  <div id="start-form" class="">
+    <form class="flex flex-col justify-center w-full h-56">
+      <label for="username" class="mt-2">What's Your Name?</label>
       <input type="text" name="username" id="username" />
-      <label for="token">Choose Your Token</label>
+      <label for="token" class="mt-2">Choose Your Token</label>
       <input type="text" name="token" id="token" />
-      <button type="submit" id="start-game">Continue</button>
+      <button type="submit" id="start-game"
+        class="border-solid border-2 border-indigo-600 mt-4 rounded">Continue</button>
       <p></p>
     </form>
   </div>
-  <div id="main-game" class="main-game hidden">
-    <h1>THIS IS THE GAME!</h1>
+  <div id="main-game" class="h-56 border-2 border-rose-500 hidden">
+    <div class="flex grid-cols-3 grid-rows-3">
+      <div id="1" class="ttt-box"></div>
+      <div id="2" class="ttt-box"></div>
+      <div id="3" class="ttt-box"></div>
+      <div id="4" class="ttt-box"></div>
+      <div id="5" class="ttt-box"></div>
+      <div id="6" class="ttt-box"></div>
+      <div id="7" class="ttt-box"></div>
+      <div id="8" class="ttt-box"></div>
+      <div id="9" class="ttt-box"></div>
+    </div>
   </div>
   <script src="bundle.js"></script>
 </body>
