@@ -1,11 +1,11 @@
 import Player from "./player"
 
 class Game {
-  winConditions: string[]
-  //player: {name: string, score: string}
   players: Player[]
   currentPlayer: Player
   gameBoard: { 1: string, 2: string, 3: string, 4: string, 5: string, 6: string, 7: string, 8: string, 9: string }
+  winConditions: string[]
+  winner: string 
 
   constructor(token: string, humanName: string) {
     this.players = [new Player(token, humanName), new Player(token === 'X' ? 'O' : 'X', 'Computer')]
@@ -22,11 +22,14 @@ class Game {
       9: ''
     }
     this.winConditions = ['123', '456', '789', '147', '258', '369', '159', '357']
+    this.winner = ''
   }
 
   checkForWin() {
     for (let i = 0; i < this.winConditions.length; i++) {
       if (this.currentPlayer.score.includes(this.winConditions[i])) {
+        this.winner = this.currentPlayer.name
+        console.log(`Winner is ${this.winner}!`)
         return this.currentPlayer.name
       }
     }
@@ -38,8 +41,16 @@ class Game {
       this.currentPlayer = this.players[1] : this.currentPlayer = this.players[0]
   }
 
+  computerTurn(): number {
+      const random: number = Math.floor(Math.random() * 9)
+      console.log(random)
+      return random
+  }
+
   addScore(box: number) {
     this.currentPlayer.score += String(box)
+    this.gameBoard[box] = this.currentPlayer.token
+    console.log(this.gameBoard)
   }
 
   assignRandom(): number {

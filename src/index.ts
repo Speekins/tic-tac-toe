@@ -2,20 +2,21 @@ import Game from './classes/game'
 
 let currentGame: Game
 
-const username = document.getElementById('username')
+const username: HTMLElement | null = document.getElementById('username')
 const token = document.getElementById('token')
 const startButton = document.getElementById('start-game')
-const startForm = document.getElementById('start-form')
+const startForm: HTMLElement | null = document.getElementById('start-form')
 const mainGame = document.getElementById('main-game')
 const boxes = document.getElementsByClassName('ttt-box')
 
 function addEventListeners() {
   for (let i = 0; i < boxes.length; i++) {
-    boxes[i].addEventListener("click", () => {
-      boxes[i].innerHTML = `<h1>${currentGame.currentPlayer.token}</h1>`
-      currentGame.addScore(i)
+    boxes[i].addEventListener("click", (event) => {
+      const id = event.target.id
+      currentGame.addScore(id)
       console.log(`Your score is ${currentGame.currentPlayer.score}`)
-      currentGame.changeTurn()
+      boxes[i].innerHTML = `<h1>${currentGame.gameBoard[id]}</h1>`
+      currentGame.checkForWin()
     })
   }
 }
@@ -26,7 +27,7 @@ startButton?.addEventListener("click", (event) => {
   initializeGame(username.value, token.value)
   hideOrShow(startForm)
   hideOrShow(mainGame)
-  // startGame()
+  startGame()
 })
 
 function initializeGame(username: string, token: string): void {
@@ -37,18 +38,17 @@ function hideOrShow(element?: HTMLElement): void {
   element?.classList.contains('hidden') ? element.classList.remove("hidden") : element?.classList.add("hidden")
 }
 
-function computerTurn(): void {
-
-  if (currentGame.currentPlayer.name === 'Computer') {
-    const random: number = Math.floor(Math.random() * 9)
-    console.log(random)
-    boxes[random].innerHTML = currentGame.currentPlayer.token
-  }
-}
-
 function startGame() {
-  while (!currentGame.checkForWin()) {
-
+  let count = 0
+  while (currentGame.winner === '') {
+    if (count === 4) {
+      currentGame.winner = 'Spencer'
+    }
+    if (currentGame.currentPlayer.name === "Computer") {
+      currentGame.computerTurn()
+    }
+    count += 1
   }
 
+  console.log("GAME OVER!")
 }
